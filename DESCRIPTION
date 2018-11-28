@@ -1,11 +1,18 @@
 Package: dododo
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Convert A Phylogeny To An L-Table
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Xu Liang
+Maintainer: Xu Liang <yourself@somewhere.net>
+Description: The package 'DDD' allows for converting an L-table to a phylogeny.
+    This package allows to do the other way around: to convert a phylogeny 
+    to an L-table.
+License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    ape
+Suggests:
+    DDD,
+    testthat
+RoxygenNote: 6.1.1

@@ -1,8 +1,12 @@
-library(ape)
-
+#' @title Convert bd phylo to L table
+#' @description Convert bd phylo to L table. Don't use for mbd.
+#' @param emdata a phylogeny, of type \code{\link[ape]{phylo}}
+#' @return the L table
+#' @author Xu Liang
+#' @export
 phylo2L = function(emdata){
-  # compute the relative branching times 
-  brt=branching.times(emdata)
+  # compute the relative branching times
+  brt=ape::branching.times(emdata)
   if(min(brt)<0){
     brt = brt+abs(min(brt))
   }
@@ -28,7 +32,7 @@ phylo2L = function(emdata){
   ext.pos = match(extinct.index3,pre.Ltable[,3])
   eeindicator[ext.pos]= pre.Ltable[ext.pos,5]
   pre.Ltable=cbind(pre.Ltable,eeindicator)
-  
+
   sort.L = pre.Ltable[order(pre.Ltable[,1],decreasing = TRUE),]
   nodesindex = unique(emdata$edge[,1])
   L = sort.L
@@ -52,19 +56,19 @@ phylo2L = function(emdata){
     realL = rbind(realL,L[j,],row.names = NULL)
     L = L[-j,,drop=FALSE]
   }
-  
+
   if(nrow(L)==0){
     do = 1
   }
   }
   realL = realL[order(realL[,1],decreasing = T),]
   L = realL[,c(1,2,3,6)]
-  
+
   daughter.index = L[,3]
   daughter.realindex = c(1:nrow(L))
   parent.index = L[,2]
   parent.realindex = match(parent.index, daughter.index)
-  
+
   L[,2]=parent.realindex
   L[,3]=daughter.realindex
   L[1,2] = 0
